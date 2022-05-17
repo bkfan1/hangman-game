@@ -1,0 +1,116 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+@mixin flexAllCenter($flex-direction) {
+  display: flex;
+  flex-direction: $flex-direction;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin buttonStyles {
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button {
+  @include buttonStyles();
+}
+
+$rounded: 10px;
+
+body {
+  min-height: 100vh;
+}
+
+header {
+  text-align: center;
+}
+
+main {
+  @include flexAllCenter(column);
+  min-height: 100vh;
+}
+
+.switchThemeButton {
+  position: fixed;
+  top: 20px;
+  right: 0;
+
+  width: 65px;
+  height: 65px;
+}
+
+.hangmanSection {
+  padding: 70px 0px;
+}
+
+.matchLetterHolder {
+  @include flexAllCenter(row);
+  width: 60px;
+  height: 60px;
+  font-size: 18px;
+  background-color: rgba(235, 235, 235, 0.733);
+  border-bottom: 2px solid #8a8a8a;
+}
+
+.matchWordLettersContainer {
+  @include flexAllCenter(row);
+  gap: 20px;
+
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.sendLetterForm {
+  @include flexAllCenter(column);
+  padding: 10px;
+  border: 1px solid #dbdbdd;
+
+  label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+
+  input {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: $rounded;
+  }
+}
+
+.clueMenu {
+  margin: 18px 0px;
+}
+
+.wrongLettersRecipient {
+  display: flex;
+  flex-direction: column;
+
+  .container {
+    display: flex;
+    width: fit-content;
+    margin: 10px 0px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+}
+
+.errorFigure {
+  padding: 10px;
+  margin: 10px 0px;
+
+  border-radius: $rounded;
+  background-color: #dc3545;
+  color: white;
+}
