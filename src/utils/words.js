@@ -90,5 +90,7 @@ export const words = [
   "LOW",
   "DOWN",
   "COAT",
-  "COUCH"
+  "COUCH",
+  "NOODLES",
+  "DOODLE",
 ];
