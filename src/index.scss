@@ -4,7 +4,10 @@
   padding: 0;
   border: none;
   outline: none;
+  transition: 150ms ease-in-out all;
 }
+
+$rounded: 10px;
 
 @mixin flexAllCenter($flex-direction) {
   display: flex;
@@ -17,12 +20,6 @@
   padding: 10px;
   border-radius: 5px;
 }
-
-button {
-  @include buttonStyles();
-}
-
-$rounded: 10px;
 
 body {
   min-height: 100vh;
@@ -37,6 +34,10 @@ main {
   min-height: 100vh;
 }
 
+button {
+  @include buttonStyles();
+}
+
 .switchThemeButton {
   position: fixed;
   top: 20px;
@@ -44,10 +45,50 @@ main {
 
   width: 65px;
   height: 65px;
+
+  font-size: 20px;
+
+  @media screen and (max-width: 585px) {
+    top: initial;
+    bottom: 12px;
+    right: 10px;
+  }
+}
+
+.darkTheme {
+  background-color: black;
+  h1,
+  h2,
+  h3,
+  label {
+    color: white;
+  }
+
+  .container__darkTheme {
+    color: black;
+    background-color: white !important;
+  }
+
+  input:focus {
+    outline: 2px solid #dbdbdb;
+  }
+}
+
+.gameplaySection {
+  @include flexAllCenter(row);
+
+  @media screen and (max-width: 890px) {
+    flex-direction: column;
+    text-align: center;
+
+    .container {
+      align-self: center;
+    }
+  }
 }
 
 .hangmanSection {
-  padding: 70px 0px;
+  @include flexAllCenter(column);
 }
 
 .matchLetterHolder {
@@ -57,6 +98,10 @@ main {
   font-size: 18px;
   background-color: rgba(235, 235, 235, 0.733);
   border-bottom: 2px solid #8a8a8a;
+}
+
+.matchLetterHolder__darkTheme {
+  background-color: white !important;
 }
 
 .matchWordLettersContainer {
@@ -70,7 +115,6 @@ main {
 .sendLetterForm {
   @include flexAllCenter(column);
   padding: 10px;
-  border: 1px solid #dbdbdd;
 
   label {
     font-weight: bold;
@@ -86,10 +130,23 @@ main {
     border: 2px solid black;
     border-radius: $rounded;
   }
+
+  button {
+    margin-top: 10px;
+  }
+}
+
+.disabledFormStyles {
+  opacity: 80%;
+  cursor: not-allowed;
 }
 
 .clueMenu {
   margin: 18px 0px;
+
+  @media screen and (max-width: 890px) {
+    @include flexAllCenter(column);
+  }
 }
 
 .wrongLettersRecipient {
@@ -98,12 +155,21 @@ main {
 
   .container {
     display: flex;
-    width: fit-content;
+    min-width: 180px;
+    min-height: 40px;
     margin: 10px 0px;
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;
   }
+}
+
+.letterClue {
+  width: 100px;
+  padding: 10px;
+  border-radius: $rounded;
+  text-align: center;
+  background-color: #dbdbdb;
 }
 
 .errorFigure {
