@@ -21,8 +21,10 @@ export default function ClueMenu() {
     <>
       <menu className="clueMenu">
         <h1>Remaining clues: {clueCounter}</h1>
-        <button onClick={handleClickClueBtn}>Get letter clue</button>
-        <p>{letterClue}</p>
+        <button style={{ margin: "12px 0px" }} onClick={handleClickClueBtn}>
+          Get letter clue
+        </button>
+        {letterClue ? <p className="letterClue">{letterClue}</p> : ""}
       </menu>
     </>
   );

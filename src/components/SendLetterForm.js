@@ -6,6 +6,8 @@ export default function SendLetterForm() {
   const {
     matchWord,
     guessedLetters,
+    remainingGuessingAttempts,
+    setRemainingGuessingAttempts,
     setGuessedLetters,
     wrongLetters,
     setWrongLetters,
@@ -25,15 +27,23 @@ export default function SendLetterForm() {
         return;
       }
       setError("Already guessed letter.");
+      setRemainingGuessingAttempts(remainingGuessingAttempts - 1);
     } else {
-      setWrongLetters([...wrongLetters, currentSubmittingValue]);
+      if (!wrongLetters.includes(currentSubmittingValue)) {
+        setWrongLetters([...wrongLetters, currentSubmittingValue]);
+      }
       setError("Wrong letter.");
+      setRemainingGuessingAttempts(remainingGuessingAttempts - 1);
     }
   };
 
   return (
     <>
-      <form className="sendLetterForm">
+      <form
+        className={`sendLetterForm ${
+          remainingGuessingAttempts === 0 ? "disabledFormStyles" : ""
+        }`}
+      >
         {error ? <ErrorFigure error={error} /> : ""}
         <label>Letter:</label>
         <input
@@ -43,9 +53,16 @@ export default function SendLetterForm() {
           type="text"
           minLength="1"
           maxLength="1"
+          disabled={remainingGuessingAttempts === 0 ? true : false}
         />
 
-        <button onClick={(e) => handleSubmit(e)}>Send</button>
+        <button
+          onClick={(e) => handleSubmit(e)}
+          disabled={remainingGuessingAttempts === 0 ? true : false}
+          className="sendLetterForm__btn"
+        >
+          Send
+        </button>
       </form>
     </>
   );

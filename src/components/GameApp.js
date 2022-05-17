@@ -7,33 +7,41 @@ import SwitchThemeButton from "./SwitchThemeButton";
 import WrongLettersRecipient from "./WrongLettersRecipient";
 
 export default function GameApp() {
-  const { matchWord, matchWordLetters, wrongLetters, clueCounter } =
-    useContext(GameContext);
-
-  if (!matchWord) {
-    return (
-      <>
-        <h1>Loading...</h1>
-      </>
-    );
-  }
+  const {
+    setMatch,
+    hangmanImage,
+    themeMode,
+    matchWordLetters,
+    guessedLetters,
+    remainingGuessingAttempts,
+  } = useContext(GameContext);
 
   return (
     <>
-      <main>
+      <main className={`${themeMode === "dark" ? "darkTheme" : ""}`}>
         <header>
           <h1>Hangman Game</h1>
           <h2>Created by Jackson Paredes Ferranti</h2>
         </header>
         <SwitchThemeButton />
 
-        <section className="hangmanSection"></section>
-
         <section className="gameplaySection">
-          <ClueMenu />
-          <WrongLettersRecipient />
-          <MatchWordLettersContainer />
-          <SendLetterForm />
+          <section className="hangmanSection">
+            <img src={hangmanImage} height={380} alt={"Hangman"} />
+            {guessedLetters.length === matchWordLetters.length ||
+            remainingGuessingAttempts === 0 ? (
+              <button onClick={setMatch}>Play again</button>
+            ) : (
+              ""
+            )}
+          </section>
+
+          <section>
+            <ClueMenu />
+            <WrongLettersRecipient />
+            <MatchWordLettersContainer />
+            <SendLetterForm />
+          </section>
         </section>
       </main>
     </>
