@@ -23,11 +23,15 @@ export default function GameApp() {
           <h1>Hangman Game</h1>
           <h2>Created by Jackson Paredes Ferranti</h2>
         </header>
+        <menu className="linksMenu">
+          <a href="https://www.github.com/bkfan1" title="Github profile"><i className="bi bi-github"/></a>
+          <a href="mailto:jacksonpf177@gmail.com" title="Send email"><i className="bi bi-envelope-fill"/></a>
+        </menu>
         <SwitchThemeButton />
 
         <section className="gameplaySection">
           <section className="hangmanSection">
-            <img src={hangmanImage} height={380} alt={"Hangman"} />
+            <img src={hangmanImage} height={350} alt={"Hangman"} />
             {guessedLetters.length === matchWordLetters.length ||
             remainingGuessingAttempts === 0 ? (
               <button onClick={setMatch}>Play again</button>
