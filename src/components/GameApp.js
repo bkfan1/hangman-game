@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { GameContext } from "../context/GameContext";
 import ClueMenu from "./ClueMenu";
+import HangmanImage from "./HangmanImage";
+import HowToPlayBox from "./HowToPlayBox";
 import MatchWordLettersContainer from "./MatchWordLettersContainer";
 import SendLetterForm from "./SendLetterForm";
 import SwitchThemeButton from "./SwitchThemeButton";
@@ -9,12 +11,14 @@ import WrongLettersRecipient from "./WrongLettersRecipient";
 export default function GameApp() {
   const {
     setMatch,
-    hangmanImage,
+    matchWord,
     themeMode,
     matchWordLetters,
     guessedLetters,
     remainingGuessingAttempts,
   } = useContext(GameContext);
+
+  const [revealHelp, setRevealHelp] = useState(false);
 
   return (
     <>
@@ -24,28 +28,44 @@ export default function GameApp() {
           <h2>Created by Jackson Paredes Ferranti</h2>
         </header>
         <menu className="linksMenu">
-          <a href="https://www.github.com/bkfan1" title="Github profile"><i className="bi bi-github"/></a>
-          <a href="mailto:jacksonpf177@gmail.com" title="Send email"><i className="bi bi-envelope-fill"/></a>
+          <a href="https://www.github.com/bkfan1" title="Github profile">
+            <i className="bi bi-github" />
+          </a>
+          <a href="mailto:jacksonpf177@gmail.com" title="Send email">
+            <i className="bi bi-envelope-fill" />
+          </a>
         </menu>
         <SwitchThemeButton />
 
         <section className="gameplaySection">
-          <section className="hangmanSection">
-            <img src={hangmanImage} height={350} alt={"Hangman"} />
-            {guessedLetters.length === matchWordLetters.length ||
-            remainingGuessingAttempts === 0 ? (
-              <button onClick={setMatch}>Play again</button>
-            ) : (
-              ""
-            )}
-          </section>
+          <div className="gameUISection">
+            <aside className="hangmanSection">
+              <HangmanImage />
+            </aside>
 
-          <section>
-            <ClueMenu />
-            <WrongLettersRecipient />
-            <MatchWordLettersContainer />
-            <SendLetterForm />
-          </section>
+            <aside className="lettersSection">
+              <div className="clueAndWrongLettersSection">
+                {matchWordLetters.length === guessedLetters.length ||
+                remainingGuessingAttempts === 0 ? (
+                  ""
+                ) : (
+                  <ClueMenu />
+                )}
+                <WrongLettersRecipient />
+              </div>
+
+              <div className="matchInputSection">
+                <MatchWordLettersContainer />
+                {matchWordLetters.length === guessedLetters.length ||
+                remainingGuessingAttempts === 0 ? (
+                  ""
+                ) : (
+                  <SendLetterForm />
+                )}
+              </div>
+            </aside>
+          </div>
+          <HowToPlayBox />
         </section>
       </main>
     </>

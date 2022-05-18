@@ -2,15 +2,14 @@ import { useContext } from "react";
 import { GameContext } from "../context/GameContext";
 
 export default function WrongLettersRecipient() {
-  const { wrongLetters, themeMode } = useContext(GameContext);
+  const { wrongLetters} = useContext(GameContext);
   return (
     <>
       <aside className="wrongLettersRecipient">
         <h1>Wrong letters:</h1>
         <div
-          className={`container ${
-            themeMode === "dark" ? "container__darkTheme" : ""
-          }`}
+          className={`container 
+          `}
         >
           {wrongLetters.map((letter, index) => (
             <p key={index}>

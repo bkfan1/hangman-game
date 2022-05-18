@@ -2,13 +2,11 @@ import { useContext } from "react";
 import { GameContext } from "../context/GameContext";
 
 export default function MatchLetterHolder({ letter }) {
-  const { guessedLetters, themeMode } = useContext(GameContext);
+  const { guessedLetters} = useContext(GameContext);
   return (
     <>
       <figure
-        className={`matchLetterHolder ${
-          themeMode === "dark" ? "matchLetterHolder__darkTheme" : ""
-        }`}
+        className={`matchLetterHolder`}
       >
         {guessedLetters.includes(letter) ? <p>{letter}</p> : ""}
       </figure>

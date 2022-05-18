@@ -21,10 +21,23 @@ export default function ClueMenu() {
     <>
       <menu className="clueMenu">
         <h1>Remaining clues: {clueCounter}</h1>
-        <button style={{ margin: "12px 0px" }} onClick={handleClickClueBtn}>
-          Get letter clue
-        </button>
-        {letterClue ? <p className="letterClue">{letterClue}</p> : ""}
+
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <button style={{ margin: "12px 0px" }} onClick={handleClickClueBtn}>
+            Get letter clue
+          </button>
+          {letterClue ? (
+            <p className="letterClue">
+              <i
+                className="bi bi-question-circle-fill"
+                style={{ marginRight: "5px" }}
+              />
+              {letterClue}
+            </p>
+          ) : (
+            ""
+          )}
+        </div>
       </menu>
     </>
   );
