@@ -31,45 +31,67 @@ body {
 header {
   text-align: center;
 
-  h1{margin-bottom: 10px;}
-  h2{
+  h1 {
     margin-bottom: 10px;
-    @media screen and (max-width: 500px) {
+  }
+  h2 {
+    margin-bottom: 10px;
+    @media screen and (max-width: 595px) {
       font-size: 18px;
-      
     }
   }
-
-  @media screen and (max-width:890px) {
-    padding-top: 25px;
-    
-  }
-
 }
 
-.linksMenu{
+.linksMenu {
   @include flexAllCenter(row);
-  gap:8px;
+  gap: 8px;
 
-  a{color: black}
+  a {
+    color: black;
+  }
 }
 
 main {
   @include flexAllCenter(column);
   min-height: 100vh;
+  padding: 25px 0px;
 }
 
 button {
   @include buttonStyles();
 }
 
-.matchWordLettersContainerGrid{
-  display: grid;
-  grid-template-columns: repeat(3,minmax(100px, 1fr));
-  grid-template-rows: repeat(auto,minmax(100px, 1fr));
-  place-items: center;
-  gap:15px;
+.howToPlayBox {
+  max-width: 700px;
+  margin-top: 25px;
+  padding: 0px 15px;
 
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    button {
+      margin-left: 15px;
+      cursor: pointer;
+    }
+  }
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+.matchWordLettersContainerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-template-rows: repeat(auto, minmax(100px, 1fr));
+  gap: 15px;
+  place-items: center;
+
+  @media screen and (max-width: 430px) {
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+  }
 }
 
 .switchThemeButton {
@@ -85,7 +107,7 @@ button {
 
   border: 2px solid #dbdbdb;
 
-  @media screen and (max-width: 585px) {
+  @media screen and (max-width: 485px) {
     top: initial;
     bottom: 12px;
     right: 10px;
@@ -97,12 +119,21 @@ button {
   h1,
   h2,
   h3,
-  label {
+  label,
+  a {
     color: white;
   }
 
-  .container__darkTheme {
+  .howToPlayBox_p {
+    color: white;
+  }
+
+  .container {
     color: black;
+    background-color: white !important;
+  }
+
+  .matchLetterHolder {
     background-color: white !important;
   }
 
@@ -111,21 +142,52 @@ button {
   }
 }
 
+.interactiveSection {
+  @media screen and (max-width: 890px) {
+    @include flexAllCenter(column);
+    flex-direction: column-reverse;
+  }
+}
+
 .gameplaySection {
+  @include flexAllCenter(column);
+}
+
+.gameUISection {
   @include flexAllCenter(row);
 
-  @media screen and (max-width: 890px) {
-    flex-direction: column;
-    text-align: center;
+  @media screen and (max-width: 800px) {
+    @include flexAllCenter(column);
+  }
+}
 
-    .container {
-      align-self: center;
-    }
+.clueAndWrongLettersSection {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  @media screen and (max-width: 800px) {
+    @include flexAllCenter(column);
+    flex-direction: column-reverse !important;
+    gap: 0;
+  }
+}
+
+.lettersSection {
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 800px) {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
   }
 }
 
 .hangmanSection {
   @include flexAllCenter(column);
+
+  @media screen and (max-width: 890px) {
+    margin-bottom: 20px;
+  }
 }
 
 .matchLetterHolder {
@@ -135,10 +197,6 @@ button {
   font-size: 18px;
   background-color: rgba(235, 235, 235, 0.733);
   border-bottom: 2px solid #8a8a8a;
-}
-
-.matchLetterHolder__darkTheme {
-  background-color: white !important;
 }
 
 .matchWordLettersContainer {
@@ -170,6 +228,9 @@ button {
 
   button {
     margin-top: 10px;
+    @media screen and (max-width: 890px) {
+      display: none;
+    }
   }
 }
 
@@ -180,8 +241,7 @@ button {
 
 .clueMenu {
   margin: 18px 0px;
-
-  @media screen and (max-width: 890px) {
+  @media screen and (max-width: 800px) {
     @include flexAllCenter(column);
   }
 }
@@ -189,10 +249,13 @@ button {
 .wrongLettersRecipient {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .container {
     display: flex;
     min-width: 180px;
+    max-width: 300px;
+    overflow-x: scroll;
     min-height: 40px;
     margin: 10px 0px;
     padding: 10px;
@@ -202,8 +265,9 @@ button {
 }
 
 .letterClue {
-  width: 100px;
+  height: fit-content;
   padding: 10px;
+  margin-left: 10px;
   border-radius: $rounded;
   text-align: center;
   background-color: #dbdbdb;
