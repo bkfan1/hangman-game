@@ -28,7 +28,7 @@ export const GameProvider = ({ children }) => {
 
     setMatchWordLetters(words[randInt].split(""));
     setMatchWord(words[randInt]);
-    setClueCounter(3);
+    setClueCounter(words[randInt].length >= 5 ? 3 : 2);
   };
 
   useEffect(() => {
@@ -60,6 +60,7 @@ export const GameProvider = ({ children }) => {
           setHangmanImage(`/sprites/hangman/${themeMode}/state_5.png`);
           break;
         default:
+          throw Error(`Nice try trying to break the game :D`);
           break;
       }
     };
