@@ -4,6 +4,8 @@ import { words } from "../utils/words";
 export const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
+  const ls = window.localStorage;
+
   const [matchWord, setMatchWord] = useState("");
   const [matchWordLetters, setMatchWordLetters] = useState([]);
   const [guessedLetters, setGuessedLetters] = useState([]);
@@ -17,23 +19,6 @@ export const GameProvider = ({ children }) => {
 
   const [themeMode, setThemeMode] = useState("light");
   const [error, setError] = useState(null);
-
-  const setMatch = () => {
-    setRemainingGuessingAttempts(5);
-    setGuessedLetters([]);
-    setWrongLetters([]);
-    setError(null);
-
-    const randInt = Math.floor(Math.random() * words.length);
-
-    setMatchWordLetters(words[randInt].split(""));
-    setMatchWord(words[randInt]);
-    setClueCounter(words[randInt].length >= 5 ? 3 : 2);
-  };
-
-  useEffect(() => {
-    setMatch();
-  }, []);
 
   useEffect(() => {
     const handleHangmanImage = () => {
@@ -60,7 +45,7 @@ export const GameProvider = ({ children }) => {
           setHangmanImage(`/sprites/hangman/${themeMode}/state_5.png`);
           break;
         default:
-          throw Error(`Nice try trying to break the game :D`);
+          throw Error(`Nice attempt trying to break the game :D`);
           break;
       }
     };
@@ -68,11 +53,42 @@ export const GameProvider = ({ children }) => {
     handleHangmanImage();
   }, [remainingGuessingAttempts, themeMode]);
 
+  const setMatch = () => {
+    setRemainingGuessingAttempts(5);
+    setGuessedLetters([]);
+    setWrongLetters([]);
+    setLetterClue("");
+    setError(null);
+
+    const randInt = Math.floor(Math.random() * words.length);
+
+    setMatchWordLetters(words[randInt].split(""));
+    setMatchWord(words[randInt]);
+    setClueCounter(words[randInt].length >= 5 ? 3 : 2);
+  };
+
+  useEffect(() => {
+    setMatch();
+  }, []);
+
+  useEffect(() => {
+    const rememberTheme = () => {
+      const theme = ls.getItem("theme");
+      if (theme) {
+        setThemeMode(theme);
+      }
+    };
+
+    rememberTheme();
+  }, [themeMode]);
+
   const handleClickThemeMode = () => {
     if (themeMode === "light") {
       setThemeMode("dark");
+      ls.setItem("theme", "dark");
     } else {
       setThemeMode("light");
+      ls.setItem("theme", "light");
     }
   };
 
