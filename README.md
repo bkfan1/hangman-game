@@ -8,5 +8,6 @@ You are shown a set of blank letters that match a word or phrase and you have to
 https://hangman-game-bk.vercel.app/
 
 # Gallery:
+https://imgur.com/a/IrdmIoR
 
 
