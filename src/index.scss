@@ -1,3 +1,5 @@
+@import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -28,6 +30,28 @@ body {
 
 header {
   text-align: center;
+
+  h1{margin-bottom: 10px;}
+  h2{
+    margin-bottom: 10px;
+    @media screen and (max-width: 500px) {
+      font-size: 18px;
+      
+    }
+  }
+
+  @media screen and (max-width:890px) {
+    padding-top: 25px;
+    
+  }
+
+}
+
+.linksMenu{
+  @include flexAllCenter(row);
+  gap:8px;
+
+  a{color: black}
 }
 
 main {
@@ -39,8 +63,18 @@ button {
   @include buttonStyles();
 }
 
+.matchWordLettersContainerGrid{
+  display: grid;
+  grid-template-columns: repeat(3,minmax(100px, 1fr));
+  grid-template-rows: repeat(auto,minmax(100px, 1fr));
+  place-items: center;
+  gap:15px;
+
+}
+
 .switchThemeButton {
   position: fixed;
+  z-index: 5;
   top: 20px;
   right: 0;
 
@@ -48,6 +82,8 @@ button {
   height: 65px;
 
   font-size: 20px;
+
+  border: 2px solid #dbdbdb;
 
   @media screen and (max-width: 585px) {
     top: initial;
