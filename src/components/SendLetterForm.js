@@ -32,7 +32,7 @@ export default function SendLetterForm() {
       setRemainingGuessingAttempts(remainingGuessingAttempts - 1);
       setTimeout(() => {
         setError(null);
-      }, 1500);
+      }, 1600);
     } else {
       if (!wrongLetters.includes(currentSubmittingValue)) {
         setWrongLetters([...wrongLetters, currentSubmittingValue]);
@@ -43,7 +43,7 @@ export default function SendLetterForm() {
       setCurrentSubmitingValue("");
       setTimeout(() => {
         setError(null);
-      }, 1500);
+      }, 1600);
     }
   };
 
@@ -59,6 +59,7 @@ export default function SendLetterForm() {
       >
         {error ? <ErrorFigure error={error} /> : ""}
         <label>Letter:</label>
+        <div>
         <input
           onChange={(e) =>
             setCurrentSubmitingValue(e.target.value.toUpperCase())
@@ -76,6 +77,7 @@ export default function SendLetterForm() {
         />
 
         <button
+        title="Send letter"
           onClick={(e) => handleSubmit(e)}
           disabled={
             remainingGuessingAttempts === 0 ||
@@ -85,8 +87,11 @@ export default function SendLetterForm() {
           }
           className="sendLetterForm__btn"
         >
-          Send
+          <i className="bi bi-send-fill"/>
         </button>
+
+        </div>
+        
       </form>
     </>
   );

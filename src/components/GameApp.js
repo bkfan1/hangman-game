@@ -41,6 +41,15 @@ export default function GameApp() {
           <div className="gameUISection">
             <aside className="hangmanSection">
               <HangmanImage />
+              {matchWordLetters.length === guessedLetters.length ||
+              remainingGuessingAttempts === 0 ? (
+                <>
+                <h1>The word was: {matchWord}</h1>
+                <button onClick={setMatch} style={{marginTop:"10px"}}>Play again</button>
+                </>
+              ) : (
+                ""
+              )}
             </aside>
 
             <aside className="lettersSection">

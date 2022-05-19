@@ -12,8 +12,7 @@ export default function HowToPlayBox() {
             className={`bi bi-chevron-${revealHelp ? "up" : "down"}`}
           ></button>
         </header>
-        {revealHelp ? (
-          <p className="howToPlayBox_p">
+        <p className={`howToPlayBox_p ${revealHelp ? "" : "p-is-hidden"}`}>
             You are shown a set of blank letters that match a word or phrase and
             you have to guess what these letters are to reveal the hidden word.
             You guess by sending a letter from an input in the UI. If you send a
@@ -22,9 +21,7 @@ export default function HowToPlayBox() {
             the letter you sent its going to be added in a "wrong letters"
             recipient and stickman is slowly drawn.
           </p>
-        ) : (
-          ""
-        )}
+
       </figure>
     </>
   );
