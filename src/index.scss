@@ -64,22 +64,28 @@ button {
 .howToPlayBox {
   max-width: 700px;
   margin-top: 25px;
-  padding: 0px 15px;
+  padding: 15px;
+  border: 1px solid #dbdbdb;
+  border-radius: $rounded;
 
   header {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 15px;
+
 
     button {
       margin-left: 15px;
       cursor: pointer;
     }
   }
-  h1 {
-    margin-bottom: 10px;
-  }
+
+}
+
+.p-is-hidden{
+  visibility: hidden;
+  display: none;
 }
 
 .matchWordLettersContainerGrid {
@@ -163,8 +169,7 @@ button {
 
 .clueAndWrongLettersSection {
   display: flex;
-  align-items: center;
-  gap: 30px;
+  flex-direction: column;
   @media screen and (max-width: 800px) {
     @include flexAllCenter(column);
     flex-direction: column-reverse !important;
@@ -185,9 +190,6 @@ button {
 .hangmanSection {
   @include flexAllCenter(column);
 
-  @media screen and (max-width: 890px) {
-    margin-bottom: 20px;
-  }
 }
 
 .matchLetterHolder {
@@ -216,22 +218,30 @@ button {
     margin-bottom: 8px;
   }
 
-  input {
-    width: 60px;
-    height: 60px;
-    padding: 10px;
-    font-size: 18px;
-    text-align: center;
-    border: 2px solid black;
-    border-radius: $rounded;
+  div{
+
+    input {
+      width: 60px;
+      height: 100%;
+      padding: 10px;
+      font-size: 18px;
+      text-align: center;
+      border:1px solid #8a8a8a;
+      border-radius: $rounded;
+    }
+  
+    button {
+      height: 100%;
+      padding: 15px;
+      margin-left: 10px;
+      @media screen and (max-width: 890px) {
+        display: none;
+      }
+    }
+
   }
 
-  button {
-    margin-top: 10px;
-    @media screen and (max-width: 890px) {
-      display: none;
-    }
-  }
+  
 }
 
 .disabledFormStyles {
@@ -249,12 +259,10 @@ button {
 .wrongLettersRecipient {
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   .container {
     display: flex;
     min-width: 180px;
-    max-width: 300px;
     overflow-x: scroll;
     min-height: 40px;
     margin: 10px 0px;
