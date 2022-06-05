@@ -74,16 +74,14 @@ button {
     justify-content: center;
     margin-bottom: 15px;
 
-
     button {
       margin-left: 15px;
       cursor: pointer;
     }
   }
-
 }
 
-.p-is-hidden{
+.p-is-hidden {
   visibility: hidden;
   display: none;
 }
@@ -189,7 +187,6 @@ button {
 
 .hangmanSection {
   @include flexAllCenter(column);
-
 }
 
 .matchLetterHolder {
@@ -218,18 +215,17 @@ button {
     margin-bottom: 8px;
   }
 
-  div{
-
+  div {
     input {
       width: 60px;
       height: 100%;
       padding: 10px;
       font-size: 18px;
       text-align: center;
-      border:1px solid #8a8a8a;
+      border: 1px solid #8a8a8a;
       border-radius: $rounded;
     }
-  
+
     button {
       height: 100%;
       padding: 15px;
@@ -238,10 +234,7 @@ button {
         display: none;
       }
     }
-
   }
-
-  
 }
 
 .disabledFormStyles {
@@ -269,6 +262,11 @@ button {
     padding: 10px;
     border: 1px solid black;
     border-radius: 5px;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin-top: 20px;
+    text-align: center;
   }
 }
 
