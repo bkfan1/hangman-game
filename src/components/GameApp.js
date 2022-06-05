@@ -45,7 +45,7 @@ export default function GameApp() {
               remainingGuessingAttempts === 0 ? (
                 <>
                 <h1>The word was: {matchWord}</h1>
-                <button onClick={setMatch} style={{marginTop:"10px"}}>Play again</button>
+                <button onClick={setMatch} style={{margin:"20px 0px"}}>Play again</button>
                 </>
               ) : (
                 ""
